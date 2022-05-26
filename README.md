@@ -2,7 +2,7 @@
 <img src="https://raw.githubusercontent.com/twobanks/weather-now/7ca1927f19b09b900252cdc095633568d28255a5/public/img/logo.svg" width="400" alt="WATHERNOW" />
 </p>
 
-Heeey!!! <img src="https://raw.githubusercontent.com/kaueMarques/kaueMarques/master/hi.gif" width="30px">
+Heeey, **Conta Azul**!!! <img src="https://raw.githubusercontent.com/kaueMarques/kaueMarques/master/hi.gif" width="30px">
 
 
 ##  Getting Started
