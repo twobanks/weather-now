@@ -10,14 +10,20 @@ Heeey, **Conta Azul**!!! <img src="https://raw.githubusercontent.com/kaueMarques
 Clone the repository, open its folder and install dependencies with:
 - `yarn`
 
-Run it using:
+Run it using
 - `yarn dev`
 
+Verify the TypeScript and ESLint
+- `yarn tsc && lint`
+
+Run build
+- `yarn build`
 
 ##   Techs
 
 - [TypeScript](https://www.typescriptlang.org/) - *for static type checking*
 - [NextJs](https://nextjs.org/) - *framework react*
+- [Vercel](https://vercel.com/) - *deploy*
 - [styled-component](https://styled-components.com/) - *CSS for styling React component*
 - [styled-media-query](https://github.com/morajabi/styled-media-query) - *@media for styled-components*
 - [SWR](https://swr.vercel.app/) - *hooks for data fetching*
@@ -25,3 +31,6 @@ Run it using:
 - [ESLint](https://eslint.org/) - *for code linting*
 - [Prettier](https://prettier.io/) - *for code formatting*
 - [Weather API](https://openweathermap.org/api) - *forecast weather data collection*
+
+## Deploy
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world)
