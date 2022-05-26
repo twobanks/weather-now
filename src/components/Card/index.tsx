@@ -1,64 +1,50 @@
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useState } from 'react';
-import * as S from './styled'
+import { useEffect, useState } from 'react'
+import useSWR, { useSWRConfig } from "swr"
 import useDebounce from '../../hooks/useDebounce'
-const API_KEY = 'b084eb8df2affa506829ff3e41a23e57'
+import * as S from './styled'
 const loader = '/img/loader.svg'
 
 type Data = {
   name: string;
 }
 
-type WeatherProps = {
-  main: {
-    humidity: number;
-    pressure: number;
-    temp: number;
-  }
-  name: string;
-  sys: {
-    country: string;
-  }
-}
-
-const weatherEmpty = {
-  main: {
-    humidity: 0,
-    pressure: 0,
-    temp: 0,
-  },
-  name: '',
-  sys: {
-    country: '',
-  }
-}
-
-const DEBOUNCED_TIME = 600000;
+const DEBOUNCE_TIME = 600000;
 
 const Card = ({ name } : Data) => {
-  const BASE_URL =`http://api.openweathermap.org/data/2.5/weather?q=${name}&units=metric&appid=${API_KEY}`;
-  const [city, setCity] = useState<WeatherProps>(weatherEmpty);
+  const API_URL =`https://api.openweathermap.org/data/2.5/weather?q=${name}&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`;
+  const [update, setUpdate] = useState<string>('');
+  const { cache, mutate } = useSWRConfig()
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
-  const debouncedValue = useDebounce<string>(city.name, DEBOUNCED_TIME)
-  const temp = +city?.main?.temp.toFixed(0)
-  
+  const [city, setCity] = useState(cache.get(API_URL))
+
+  const fetcher = async () => {
+    setLoading(true)
+    const response = await fetch(API_URL)
+    const data = await response.json()
+    setCity(data)
+    const time = new Date()
+    setUpdate(time.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true  }))
+    setLoading(false)
+  }
+
+  const debouncedValue = useDebounce(fetcher, DEBOUNCE_TIME)
+
+  const { error } = useSWR(
+    API_URL,
+    fetcher,
+    { refreshInterval: DEBOUNCE_TIME, 
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false  
+    },
+    );
 
   useEffect(() => {
-    const fetchApi = async() =>
-    {
-        setLoading(true)
-        const response = await fetch(BASE_URL);
-        if (response.ok) {
-          const resJson = await response.json();
-          setCity(resJson);
-        } else {
-          setError(true)
-        }
-        setLoading(false)
-    }
-    fetchApi();
-  },[name,  BASE_URL, debouncedValue])
+    cache.delete(API_URL)
+  },[API_URL, cache, debouncedValue])
+
+  const temp = +city?.main?.temp.toFixed(0)
 
   const renderLoading = () => (
     <S.WrapperLoading>
@@ -82,7 +68,7 @@ const Card = ({ name } : Data) => {
                 <em>{city?.main?.pressure}hPa</em>
               </div>
             </S.Data>
-            <span>Updated at - - - </span>
+            <span>Updated at {update} </span>
           </S.Footer>
         </>
       )}
@@ -92,7 +78,7 @@ const Card = ({ name } : Data) => {
   const renderMessageError = () => (
     <S.WrapperError>
       <span>Something went wrong</span>
-      <button type='button'>Try Again</button>
+      <button type='button' onClick={() => mutate(API_URL)}>Try Again</button>
     </S.WrapperError>
   )
 
