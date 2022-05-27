@@ -17,7 +17,26 @@ Verify the TypeScript and ESLint
 - `yarn tsc && lint`
 
 Run build
-- `yarn build`
+- `yarn build`  
+
+## Layout
+
+<details>
+  <summary>Screen Desktop</summary>
+  <img src="https://user-images.githubusercontent.com/2577611/170714725-ba8a2638-02ef-45f6-abb5-54b21ca69dfb.gif" />
+</details>
+<details>
+  <summary>Screen Mobile</summary>
+  <img src="https://user-images.githubusercontent.com/2577611/170715106-b742de2f-cb0f-4374-96f7-394f5722f123.gif" />
+</details>
+<details>
+  <summary>Screen with loading</summary>
+  <img src="https://user-images.githubusercontent.com/2577611/170714366-e76f7cd2-7b28-48ba-8284-2524c7bd7e7d.gif" />
+</details>
+<details>
+  <summary>Screen with errors</summary>
+  <img src="https://user-images.githubusercontent.com/2577611/170714661-74c30f58-711e-4d8d-ba22-0b9a46f1de5d.gif" />
+</details>  
 
 ##   Techs
 
