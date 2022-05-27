@@ -1,12 +1,19 @@
 import { Card, TopBar } from "../../components";
-import { mock } from "./mock";
+import { Home, Weather } from "../../types/weather";
 import * as S from './styled';
 
-const HomeTemplate = () => (
+type HomeProps = {
+  cities: {
+    cnt: number;
+    list: Weather[]
+  }
+} & Home;
+
+const HomeTemplate = ({ update, loading, error, cities, fetcher }: HomeProps) => (
   <S.Wrapper>
     <TopBar />
     <S.Content>
-      {mock.map(item => <Card name={item.name} key={item.id} />)}
+      {cities?.list?.map(city => <Card city={city} key={city.id} update={update} error={error} loading={loading} fetcher={fetcher} />)}
     </S.Content>
   </S.Wrapper>
 )

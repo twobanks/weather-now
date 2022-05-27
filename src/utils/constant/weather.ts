@@ -1,0 +1,1 @@
+export const API_URL =`https://api.openweathermap.org/data/2.5/group?id=184745,3445709,3421319&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`;

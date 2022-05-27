@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "watch": "jest --watch",
-    "test": "jest --ci"
+    "test": "jest --watchAll --detectOpenHandles"
   },
   "dependencies": {
     "@types/styled-components": "^5.1.22",

@@ -66,9 +66,11 @@ export const Content = styled.div<CardStyle>`
     align-items: center;
     flex: 1;
     font-size: ${theme.font.sizes.s80};
-    ${temperature <= 5 && tempModifier[TEMPERATURE.COLD](theme)}
-    ${temperature > 5  && tempModifier[TEMPERATURE.NORMAL](theme)}
-    ${temperature >= 26 && tempModifier[TEMPERATURE.HOT](theme)}
+    strong {
+      ${temperature <= 5 && tempModifier[TEMPERATURE.COLD](theme)}
+      ${temperature > 5  && tempModifier[TEMPERATURE.NORMAL](theme)}
+      ${temperature >= 26 && tempModifier[TEMPERATURE.HOT](theme)}
+    }
   `}
 `;
 

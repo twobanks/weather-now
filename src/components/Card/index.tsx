@@ -1,51 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useState } from 'react'
-import useSWR, { useSWRConfig } from "swr"
-import useDebounce from '../../hooks/useDebounce'
+import {  Home, Weather } from '../../types/weather'
 import * as S from './styled'
 const loader = '/img/loader.svg'
 
-type Data = {
-  name?: string;
-}
+type CardProps = {
+  city: Weather;
+} & Home;
 
-const DEBOUNCE_TIME = 600000;
-
-const Card = ({ name } : Data) => {
-  const API_URL =`https://api.openweathermap.org/data/2.5/weather?q=${name}&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`;
-  const [update, setUpdate] = useState<string>('');
-  const { cache, mutate } = useSWRConfig()
-  const [loading, setLoading] = useState<boolean>(false);
-  const [city, setCity] = useState(cache.get(API_URL))
-
-  const fetcher = async () => {
-    setLoading(true)
-    const response = await fetch(API_URL)
-    const data = await response.json()
-    setCity(data)
-    const time = new Date()
-    setUpdate(time.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true  }))
-    setLoading(false)
-  }
-
-  const debouncedValue = useDebounce(fetcher, DEBOUNCE_TIME)
-
-  const { error } = useSWR(
-    API_URL,
-    fetcher,
-    { refreshInterval: DEBOUNCE_TIME, 
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false  
-    },
-    );
-
-  useEffect(() => {
-    cache.delete(API_URL)
-  },[API_URL, cache, debouncedValue])
-
-  const temp = +city?.main?.temp.toFixed(0)
-
+const Card = ({ update, loading, error, city, fetcher }: CardProps) => { <>test</>
+  const temperature = +city?.main?.temp.toFixed(0)
   const renderLoading = () => (
     <S.WrapperLoading>
       <img src={loader} alt="Circulo girando ilustrando um loader."/>
@@ -56,7 +19,7 @@ const Card = ({ name } : Data) => {
     <>
       {loading ? renderLoading() : (
         <>
-          <S.Content temperature={temp}> {loading ? renderLoading() : <>{temp}°</>}</S.Content> 
+          <S.Content temperature={temperature}> {loading ? renderLoading() : <strong>{temperature}°</strong>}</S.Content> 
           <S.Footer>
             <S.Data>
               <div>
@@ -78,13 +41,13 @@ const Card = ({ name } : Data) => {
   const renderMessageError = () => (
     <S.WrapperError>
       <span>Something went wrong</span>
-      <button type='button' onClick={() => mutate(API_URL)}>Try Again</button>
+      <button type='button' onClick={() => fetcher()}>Try Again</button>
     </S.WrapperError>
   )
 
   return (
     <S.Wrapper error={error}>
-      <S.Header>{name}</S.Header>
+      <S.Header>{city?.name}, {city?.sys?.country}</S.Header>
       {error ? renderMessageError() : renderContent()}
     </S.Wrapper>
   )
