@@ -67,6 +67,7 @@ export const Content = styled.div<CardStyle>`
     flex: 1;
     font-size: ${theme.font.sizes.s80};
     strong {
+      font-weight: ${theme.font.normal};
       ${temperature <= 5 && tempModifier[TEMPERATURE.COLD](theme)}
       ${temperature > 5  && tempModifier[TEMPERATURE.NORMAL](theme)}
       ${temperature >= 26 && tempModifier[TEMPERATURE.HOT](theme)}
@@ -126,7 +127,7 @@ export const WrapperError = styled.div`
     span {
       color: ${theme.colors.red};
       font-size: ${theme.font.sizes.s16};
-      font-weight: ${theme.font.bold};
+      font-weight: ${theme.font.normal};
     }
     button {
       cursor: pointer;

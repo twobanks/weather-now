@@ -17,24 +17,20 @@ const Card = ({ update, loading, error, city, fetcher }: CardProps) => { <>test<
 
   const renderContent = () => (
     <>
-      {loading ? renderLoading() : (
-        <>
-          <S.Content temperature={temperature}> {loading ? renderLoading() : <strong>{temperature}°</strong>}</S.Content> 
-          <S.Footer>
-            <S.Data>
-              <div>
-                <span>HUMIDITY</span>
-                <em>{city?.main?.humidity}%</em>
-              </div>
-              <div>
-                <span>PRESSURE</span>
-                <em>{city?.main?.pressure}hPa</em>
-              </div>
-            </S.Data>
-            <span>Updated at {update} </span>
-          </S.Footer>
-        </>
-      )}
+      <S.Content temperature={temperature}> {loading ? renderLoading() : <strong>{temperature}°</strong>}</S.Content> 
+      <S.Footer>
+        <S.Data>
+          <div>
+            <span>HUMIDITY</span>
+            <em>{city?.main?.humidity}%</em>
+          </div>
+          <div>
+            <span>PRESSURE</span>
+            <em>{city?.main?.pressure}hPa</em>
+          </div>
+        </S.Data>
+        <span>Updated at {update} </span>
+      </S.Footer>
     </>
   )
 
