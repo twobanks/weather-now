@@ -6,7 +6,7 @@ import * as S from './styled'
 const loader = '/img/loader.svg'
 
 type Data = {
-  name: string;
+  name?: string;
 }
 
 const DEBOUNCE_TIME = 600000;

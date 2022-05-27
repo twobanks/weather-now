@@ -31,6 +31,7 @@ Run build
 - [ESLint](https://eslint.org/) - *for code linting*
 - [Prettier](https://prettier.io/) - *for code formatting*
 - [Weather API](https://openweathermap.org/api) - *forecast weather data collection*
-
+- [Jest](https://jestjs.io/pt-BR/) - *JavaScript Testing Framework*
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - *DOM Testing Library*
 ## Deploy
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world)
