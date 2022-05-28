@@ -4,8 +4,7 @@ export default {
       roboto:
         "Roboto, sans-serif, Arial",
     },
-    light: 400,
-    normal: 500,
+    normal: 400,
     bold: 600,
     sizes: {
       s12: "1.2rem",

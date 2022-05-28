@@ -4,7 +4,7 @@ const logo = '/img/logo.svg'
 
 const TopBar = () => (
   <S.Header>
-    <img src={logo} alt="WEATHERNOW" />
+    <img src={logo} alt="Logo da WEATHERNOW" />
   </S.Header>
 )
 

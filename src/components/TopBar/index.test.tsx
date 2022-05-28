@@ -3,8 +3,8 @@ import TopBar from '.'
 
 describe('TopBar', () => {
   it('render a logo - WEATHERNOW', () => {
-    const { container } = renderWithTheme(<TopBar />)
-    const image = container.querySelector('img');
-    expect(image).toHaveAttribute('src', '/img/logo.svg');
+    const { getByAltText } = renderWithTheme(<TopBar />)
+    const image = getByAltText('Logo da WEATHERNOW')
+    expect(image).toBeInTheDocument();
   })
 })

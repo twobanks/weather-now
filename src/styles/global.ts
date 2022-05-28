@@ -48,7 +48,7 @@ const GlobalStyles = createGlobalStyle`
       background-color: ${theme.colors.background};
       font-size: ${theme.font.sizes.s16};
       color: ${theme.colors.secondary};
-      font-weight: ${theme.font.light};
+      font-weight: ${theme.font.normal};
       font-family: ${theme.font.family.roboto};
       font-style: normal;
       font-display: swap;

@@ -7,11 +7,11 @@ type CardProps = {
   city: Weather;
 } & Home;
 
-const Card = ({ update, loading, error, city, fetcher }: CardProps) => { <>test</>
+const Card = ({ update, loading, error, city, fetcher }: CardProps) => {
   const temperature = +city?.main?.temp.toFixed(0)
   const renderLoading = () => (
     <S.WrapperLoading>
-      <img src={loader} alt="Circulo girando ilustrando um loader."/>
+      <img src={loader} alt="Círculo girando ilustrando um loader."/>
     </S.WrapperLoading>
   )
 

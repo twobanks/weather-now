@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useSWR, { useSWRConfig } from "swr";
-import useDebounce from "../hooks/useDebounce";
 import HomeTemplate from '../templates/Home'
 import { Weather } from '../types/weather';
 import { API_URL } from '../utils/constant/weather'
@@ -24,8 +23,6 @@ const Home: NextPage = () => {
     setLoading(false)
   }
 
-  const debouncedValue = useDebounce(fetcher, DEBOUNCE_TIME)
-
   const { error } = useSWR(
     API_URL,
     fetcher,
@@ -36,10 +33,6 @@ const Home: NextPage = () => {
     },
     );
 
-  useEffect(() => {
-    cache.delete(API_URL)
-  },[cache, debouncedValue])
-  
   return <HomeTemplate update={update} error={error} loading={loading} cities={cities} fetcher={fetcher} />
 }
 
